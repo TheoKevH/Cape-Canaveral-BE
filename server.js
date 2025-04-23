@@ -13,6 +13,9 @@ app.use(express.json());
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
+const boardRoutes = require('./routes/boardRoutes');
+app.use('/api/boards', boardRoutes);
+
 // Test route
 app.get('/', (req, res) => {
   res.send('Cape Canaveral API running!');
