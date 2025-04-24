@@ -16,6 +16,9 @@ app.use('/api/auth', authRoutes);
 const boardRoutes = require('./routes/boardRoutes');
 app.use('/api/boards', boardRoutes);
 
+const columnRoutes = require('./routes/columnRoutes');
+app.use('/api/columns', columnRoutes);
+
 // Test route
 app.get('/', (req, res) => {
   res.send('Cape Canaveral API running!');
