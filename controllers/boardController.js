@@ -1,4 +1,6 @@
 const Board = require('../models/Board');
+const Column = require('../models/Column');
+const Task = require('../models/Task');
 
 const createBoard = async (req, res) => {
   try {
@@ -41,9 +43,40 @@ const deleteBoard = async (req, res) => {
   }
 };
 
+const getFullBoard = async (req, res) => {
+    const boardId = req.params.id;
+  
+    try {
+      // Make sure the board belongs to the logged-in user
+      const board = await Board.findOne({ _id: boardId, user: req.user.userId });
+      if (!board) return res.status(404).json({ message: 'Board not found' });
+  
+      const columns = await Column.find({ board: board._id });
+  
+      // For each column, get its tasks
+      const columnsWithTasks = await Promise.all(columns.map(async (column) => {
+        const tasks = await Task.find({ column: column._id });
+        return {
+          _id: column._id,
+          name: column.name,
+          tasks
+        };
+      }));
+  
+      res.status(200).json({
+        _id: board._id,
+        name: board.name,
+        columns: columnsWithTasks
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to fetch full board' });
+    }
+};
+
 module.exports = {
     createBoard,
     getBoards,
     getBoardById,
-    deleteBoard
+    deleteBoard,
+    getFullBoard
 }
