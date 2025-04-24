@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { createBoard, getBoards, getBoardById, deleteBoard } = require('../controllers/boardController');
+const { createBoard, getBoards, getBoardById, deleteBoard, getFullBoard } = require('../controllers/boardController');
 const requireAuth = require('../middleware/authMiddleware');
-const { getFullBoard } = require('../controllers/boardController'); 
 
 router.use(requireAuth); // all routes below require auth
 
