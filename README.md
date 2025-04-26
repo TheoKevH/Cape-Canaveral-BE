@@ -25,4 +25,4 @@ Created by: Theodore Kevin Himawan (theodorekevinh@gmail.com)
 ## 🚀 Live Deployment
 
 - Backend API: [Cape Canaveral API](https://cape-canaveral-be.onrender.com)
-- Frontend: [Cape Canveral Site](https://capecanaveral-fe.vercel.app)
+- Frontend: [Cape Canaveral Site](https://capecanaveral-fe.vercel.app)
